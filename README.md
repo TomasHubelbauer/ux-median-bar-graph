@@ -12,4 +12,5 @@ from outliers, but also doesn't cut them off, instead option to switch to textua
 representation of the multiples, which is still fast to parse and resolve when
 needed.
 
-- [ ] Redo this from CRA JS to plain JS and host using GitHub Pages
+- [ ] Redo this in another repo as plain JS and host using GitHub Pages
+- [ ] Fix the security warning GitHub shows by updating dependencies
