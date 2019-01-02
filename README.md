@@ -11,3 +11,5 @@ The idea is to find a visual representation that doesn't suffer from squashing
 from outliers, but also doesn't cut them off, instead option to switch to textual
 representation of the multiples, which is still fast to parse and resolve when
 needed.
+
+- [ ] Redo this from CRA JS to plain JS and host using GitHub Pages
