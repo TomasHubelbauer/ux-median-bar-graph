@@ -1,0 +1,51 @@
+.MedianBarGraph {
+    display: flex;
+    font: icon;
+    font-size: small;
+    height: 150px;
+    justify-content: flex-end;
+}
+
+.MedianBarGraph-barBox {
+    border-bottom: .25ex solid silver;
+    display: flex;
+    flex-direction: column;
+    width: 35px;
+}
+
+.MedianBarGraph-factor {
+    font-size: x-small;
+    text-align: center;
+}
+
+.MedianBarGraph-barArea {
+    align-items: flex-end;
+    display: flex;
+    flex: 1;
+    padding: 0 .5ex 0;
+}
+
+.MedianBarGraph-barArea:hover {
+    background: rgb(234, 234, 234);
+    cursor: pointer;
+}
+
+.MedianBarGraph-bar {
+    align-items: flex-end;
+    color: white;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.MedianBarGraph-barSuccess {
+    background: rgba(16, 124, 16, .75);
+}
+
+.MedianBarGraph-barError {
+    background: rgba(218, 10, 0, .75);
+}
+
+.MedianBarGraph-barProgress {
+    background: rgba(0, 0, 0, .75);
+}
