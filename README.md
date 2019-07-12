@@ -1,6 +1,6 @@
 # UX Median Bar Graph
 
-[**LIVE**](https://tomashubelbauer.github.io/ux-experiment-locking-suggestion-list)
+[**LIVE**](https://tomashubelbauer.github.io/ux-median-bar-graph)
 
 This repository is an experiment in implementing a UI control displaying a bar
 graph that uses the median of values to determine the maximum value representable
