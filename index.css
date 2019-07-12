@@ -36,6 +36,16 @@
     display: flex;
     flex: 1;
     justify-content: center;
+    animation: 1s ease-in rise;
+}
+
+@keyframes rise {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: calc(auto);
+    }
 }
 
 .MedianBarGraph-barSuccess {
