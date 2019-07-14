@@ -1,20 +1,112 @@
 window.addEventListener('load', () => {
-  render(
-    [
-      { runtime: 60, result: 'success' },
-      { runtime: 70, result: 'success' },
-      { runtime: 50, result: 'success' },
-      { runtime: 60, result: 'success' },
-      { runtime: 350, result: 'error' },
-      { runtime: 30, result: 'error' },
-      { runtime: 10, result: 'progress' },
-    ],
-    1.5
-  );
+  let factor = 1.5;
+  const values = new Array(10).fill(null).map(() => ({ runtime: Math.round(Math.random() * 1000), result: ['success', 'error', 'progress'][Math.floor(Math.random() * 3)] }));
+
+  const graphDiv = document.getElementById('graphDiv');
+  const animated = render(values, factor);
+  animated.classList.add('animated');
+  graphDiv.append(animated);
+
+  const factorInput = document.getElementById('factorInput');
+  factorInput.addEventListener('input', () => {
+    factor = event.currentTarget.valueAsNumber;
+    graphDiv.innerHTML = '';
+    graphDiv.append(render(values, factor));
+  });
+
+  const addValueButton = document.getElementById('addValueButton');
+  addValueButton.addEventListener('click', handleAddValueButtonClick);
+
+  const valuesTbody = document.getElementById('valuesTbody');
+  function refresh() {
+    valuesTbody.innerHTML = '';
+
+    let index = 0;
+    for (const value of values) {
+      const valueTr = document.createElement('tr');
+
+      const valueTd = document.createElement('td');
+
+      const valueInput = document.createElement('input');
+      valueInput.dataset.index = index;
+      valueInput.type = 'number';
+      valueInput.value = value.runtime;
+      valueInput.min = 0;
+      valueInput.addEventListener('input', handleValueInputInput);
+
+      valueTd.append(valueInput);
+      valueTr.append(valueTd);
+
+      const stateTd = document.createElement('td');
+
+      const stateSelect = document.createElement('select');
+      stateSelect.dataset.index = index;
+      stateSelect.addEventListener('change', handleStateSelectChange);
+
+      const successOption = document.createElement('option');
+      successOption.textContent = 'success';
+      successOption.selected = value.result === 'success';
+
+      const errorOption = document.createElement('option');
+      errorOption.textContent = 'error';
+      errorOption.selected = value.result === 'error';
+
+      const progressOption = document.createElement('option');
+      progressOption.textContent = 'progress';
+      progressOption.selected = value.result === 'progress';
+
+      stateSelect.append(successOption, errorOption, progressOption);
+      stateTd.append(stateSelect);
+      valueTr.append(stateTd);
+
+      const buttonTd = document.createElement('td');
+
+      const deleteValueButton = document.createElement('button');
+      deleteValueButton.textContent = '-';
+      deleteValueButton.dataset.index = index;
+      deleteValueButton.addEventListener('click', handleDeleteValueButtonClick);
+      buttonTd.append(deleteValueButton);
+      valueTr.append(buttonTd);
+
+      valuesTbody.append(valueTr);
+      index++;
+    }
+  }
+
+  refresh();
+
+  function handleAddValueButtonClick() {
+    values.push({ runtime: 0, result: 'success' });
+    graphDiv.innerHTML = '';
+    graphDiv.append(render(values, factor));
+    refresh();
+    document.querySelector('tbody tr:last-child input').focus();
+  }
+
+  function handleValueInputInput(event) {
+    const index = Number(event.currentTarget.dataset.index);
+    values[index].runtime = event.currentTarget.value;
+    graphDiv.innerHTML = '';
+    graphDiv.append(render(values, factor));
+  }
+
+  function handleStateSelectChange(event) {
+    const index = Number(event.currentTarget.dataset.index);
+    values[index].result = event.currentTarget.value;
+    graphDiv.innerHTML = '';
+    graphDiv.append(render(values, factor));
+  }
+
+  function handleDeleteValueButtonClick(event) {
+    const index = Number(event.currentTarget.dataset.index);
+    values.splice(index, 1);
+    graphDiv.innerHTML = '';
+    graphDiv.append(render(values, factor));
+    refresh();
+  }
 });
 
 function render(/** @type {Number[]} */ values, /** @type {Number} */ factor = undefined) {
-  // https://jonlabelle.com/snippets/view/javascript/calculate-mean-median-mode-and-range-in-javascript
   const numbers = values.map(v => v.runtime).sort();
   const median = numbers.length % 2 === 0
     // Average of two middle numbers
@@ -63,5 +155,5 @@ function render(/** @type {Number[]} */ values, /** @type {Number} */ factor = u
     medianBarGraphBarAreaDiv.append(mediaBarGraphBarDiv);
   }
 
-  document.body.append(medianBarGraphDiv);
+  return medianBarGraphDiv;
 }

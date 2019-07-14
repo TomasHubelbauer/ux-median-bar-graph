@@ -7,5 +7,50 @@
     <link rel="stylesheet" href="index.css" />
     <script src="index.js"></script>
   </head>
-  <body></body>
+  <body>
+    <p>This is a median bar graph.</p>
+    <div id="graphDiv"></div>
+    <p>
+      It accepts an array of numbers, calculates its median, adjusts it using a
+      factor of the user's choice and uses the resulting threshold as its upper
+      limit.
+    </p>
+    <div>
+      <label for="factorInput">Factor:</label>
+      <input id="factorInput" type="number" value="1.5" step=".1" min="0" max="10" />
+      <br />
+      <fieldset>
+        <legend>Values:</legend>
+        <table>
+          <thead>
+            <tr>
+              <th>Value</th>
+              <th>State</th>
+              <th>
+                <button id="addValueButton">+</button>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="valuesTbody"></tbody>
+        </table>
+      </fieldset>
+    </div>
+    <p>
+      Values that do not reach the threshold are rendered with height relative
+      to them compared to the threshold.
+    </p>
+    <p>
+      Values that do reach or surpass the threshold are rendered as tall as the
+      graph itself and have a label sit atop them which indicates the factor by
+      which they surpass the threshold.
+    </p>
+    <p>
+      The idea is that by choosing the median, the bars which do not reach it
+      provide superior visual indication of their relative magnitudes and those
+      do or surpass it do not distort the graph to the point where its visually
+      indicative value is lost. The labels with their factors serve as a
+      secondary indicator enabling further inspection of the magnitudes of all
+      the values.
+    </p>
+  </body>
 </html>

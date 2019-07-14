@@ -1,3 +1,12 @@
+body {
+    font: normal 12px sans-serif;
+}
+
+input, select {
+    /* Prevent Safari auto-zoom */
+    font-size: 16px;
+}
+
 .MedianBarGraph {
     display: flex;
     font: icon;
@@ -35,6 +44,9 @@
     display: flex;
     flex: 1;
     justify-content: center;
+}
+
+.MedianBarGraph.animated .MedianBarGraph-bar {
     animation: 1s ease-in rise;
 }
 
@@ -49,12 +61,15 @@
 
 .MedianBarGraph-barSuccess {
     background: rgba(16, 124, 16, .75);
+    text-shadow: 0 0 3px rgba(16, 124, 16, .75), 0 0 2px rgba(16, 124, 16, .75), 0 0 1px rgba(16, 124, 16, .75);
 }
 
 .MedianBarGraph-barError {
     background: rgba(218, 10, 0, .75);
+    text-shadow: 0 0 3px rgba(218, 10, 0, .75), 0 0 2px rgba(218, 10, 0, .75), 0 0 1px rgba(218, 10, 0, .75);
 }
 
 .MedianBarGraph-barProgress {
     background: rgba(0, 0, 0, .75);
+    text-shadow: 0 0 3px rgba(0, 0, 0, .75), 0 0 2px rgba(0, 0, 0, .75), 0 0 1px rgba(0, 0, 0, .75);
 }
