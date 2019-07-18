@@ -2,7 +2,13 @@ body {
     font: normal 12px sans-serif;
 }
 
-input, select {
+input {
+    /* Prevent Safari auto-zoom */
+    font-size: 16px;
+    width: 50px;
+}
+
+select {
     /* Prevent Safari auto-zoom */
     font-size: 16px;
 }
